@@ -1,0 +1,161 @@
+/* ============================================================
+   SIMPLY POLISHED — LUXE LAYER
+   Loaded after the base stylesheet. Refines palette, light,
+   and motion for a more modern, luxurious feel.
+   ============================================================ */
+
+:root{
+  --primary:163 28% 13%;
+  --accent:19 60% 54%;
+  --ring:19 60% 54%;
+  --gold:38 68% 58%;
+  --gold-deep:34 60% 42%;
+}
+
+html{ scroll-behavior:smooth; }
+
+::selection{ background:hsl(var(--accent)); color:#fff; }
+
+/* ---------- Molten CTA buttons ---------- */
+a[class*="bg-[hsl(var(--accent))]"],
+button[class*="bg-[hsl(var(--accent))]"]{
+  background-image:linear-gradient(135deg, hsl(24 72% 60%) 0%, hsl(var(--accent)) 55%, hsl(16 64% 45%) 100%);
+  box-shadow:0 12px 28px -10px hsl(var(--accent) / .65), inset 0 1px 0 hsl(0 0% 100% / .28);
+  border-radius:.55rem;
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  transition:transform .35s cubic-bezier(.22,.75,.25,1), box-shadow .35s ease;
+}
+a[class*="bg-[hsl(var(--accent))]"]:hover,
+button[class*="bg-[hsl(var(--accent))]"]:hover{
+  transform:translateY(-2px);
+  box-shadow:0 18px 40px -10px hsl(var(--accent) / .8), inset 0 1px 0 hsl(0 0% 100% / .32);
+}
+a[class*="bg-[hsl(var(--accent))]"]::after,
+button[class*="bg-[hsl(var(--accent))]"]::after{
+  content:"";
+  position:absolute; inset:0; z-index:1;
+  background:linear-gradient(105deg, transparent 42%, hsl(0 0% 100% / .5) 50%, transparent 58%);
+  transform:translateX(-130%);
+  transition:transform .8s ease;
+  pointer-events:none;
+}
+a[class*="bg-[hsl(var(--accent))]"]:hover::after,
+button[class*="bg-[hsl(var(--accent))]"]:hover::after{
+  transform:translateX(130%);
+}
+
+/* ---------- Cinematic hero ---------- */
+.hero-image{
+  background-image:
+    radial-gradient(55% 45% at 76% 16%, hsl(var(--gold) / .20), transparent 70%),
+    linear-gradient(180deg, hsl(163 30% 8% / .52), transparent 34%),
+    linear-gradient(90deg, #14211bd9, #14211b59, #14211b0a 80%),
+    linear-gradient(0deg, hsl(163 30% 8% / .68), transparent 30%),
+    url(../images/hero-home.jpg);
+}
+#top h1{
+  text-shadow:0 2px 44px hsl(163 30% 8% / .5);
+}
+#top h1 em{
+  color:#f4e3c0;
+  text-shadow:none;
+  font-style:italic;
+}
+@supports ((background-clip:text) or (-webkit-background-clip:text)){
+  #top h1 em{
+    background:linear-gradient(100deg, #f9edcb 5%, #eec27f 48%, #cf9250 95%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    filter:drop-shadow(0 2px 20px hsl(38 80% 55% / .35));
+  }
+}
+#top span.h-px{
+  background:linear-gradient(90deg, hsl(var(--gold)), hsl(var(--gold) / 0));
+  height:2px;
+  box-shadow:0 0 12px hsl(var(--gold) / .6);
+}
+#top header a{
+  text-shadow:0 1px 14px hsl(163 30% 8% / .65);
+}
+
+/* ---------- Marquee strip sheen ---------- */
+[aria-label="Our promise"]{
+  background-image:linear-gradient(180deg, hsl(0 0% 100% / .14), transparent 45%, hsl(0 0% 0% / .10));
+  border-bottom:1px solid hsl(var(--gold-deep) / .55);
+}
+
+/* ---------- Service cards: golden reveal ---------- */
+.service-card{ position:relative; }
+.service-card::before{
+  content:"";
+  position:absolute; top:-1px; left:12%; right:12%; height:2px;
+  background:linear-gradient(90deg, transparent, hsl(var(--gold)), transparent);
+  opacity:0;
+  transition:opacity .45s ease;
+  pointer-events:none;
+}
+.service-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 26px 50px -22px hsl(163 30% 10% / .30);
+}
+.service-card:hover::before{ opacity:1; }
+
+/* ---------- Gallery: slow zoom ---------- */
+.image-frame img{
+  transition:transform 1s cubic-bezier(.22,.75,.25,1);
+}
+.image-frame:hover img{
+  transform:scale(1.055);
+}
+
+/* ---------- Contact band glow ---------- */
+#contact{
+  background-image:
+    radial-gradient(55% 65% at 85% 18%, hsl(0 0% 100% / .16), transparent 70%),
+    linear-gradient(180deg, hsl(0 0% 0% / .07), transparent 32%);
+}
+#contact input,
+#contact textarea,
+#contact select{
+  background:hsl(0 0% 100% / .94);
+  border:1px solid hsl(163 30% 12% / .20);
+  border-radius:.6rem;
+  transition:border-color .3s ease, box-shadow .3s ease;
+}
+#contact input:focus,
+#contact textarea:focus,
+#contact select:focus{
+  outline:none;
+  border-color:hsl(var(--gold));
+  box-shadow:0 0 0 3px hsl(var(--gold) / .38);
+}
+
+/* ---------- Typography polish ---------- */
+.display-font{
+  text-wrap:balance;
+}
+
+/* ---------- Focus + scrollbar ---------- */
+:focus-visible{
+  outline:2px solid hsl(var(--gold));
+  outline-offset:3px;
+}
+::-webkit-scrollbar{ width:10px; }
+::-webkit-scrollbar-track{ background:hsl(var(--background)); }
+::-webkit-scrollbar-thumb{
+  background:hsl(var(--accent) / .55);
+  border-radius:8px;
+  border:2px solid hsl(var(--background));
+}
+::-webkit-scrollbar-thumb:hover{ background:hsl(var(--accent) / .8); }
+
+@media (prefers-reduced-motion:reduce){
+  a[class*="bg-[hsl(var(--accent))]"]::after,
+  button[class*="bg-[hsl(var(--accent))]"]::after{
+    display:none;
+  }
+  .image-frame img{ transition:none; }
+}
