@@ -159,3 +159,91 @@ button[class*="bg-[hsl(var(--accent))]"]:hover::after{
   }
   .image-frame img{ transition:none; }
 }
+
+/* ============================================================
+   LUXE LAYER v2 — MAXIMUM POP
+   ============================================================ */
+
+/* Headlines: bigger, bolder presence */
+#top h1{
+  font-size:clamp(4rem, 9.5vw, 9rem);
+  letter-spacing:-.05em;
+}
+h2.display-font{
+  font-size:clamp(2.9rem, 5.6vw, 4.9rem);
+  letter-spacing:-.03em;
+  line-height:.95;
+}
+
+/* Shimmering gold on every italic headline accent (hero keeps its lighter gold) */
+.display-font em{
+  color:#b57e3a;
+}
+@supports ((background-clip:text) or (-webkit-background-clip:text)){
+  .display-font em{
+    background:linear-gradient(100deg, #c98d4b 15%, #f6dc9e 38%, #e9b96f 50%, #f6dc9e 62%, #c98d4b 85%);
+    background-size:220% auto;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation:gold-shimmer 7s linear infinite;
+  }
+}
+@keyframes gold-shimmer{
+  to{ background-position:220% center; }
+}
+#top h1 em{
+  animation:gold-shimmer 7s linear infinite;
+}
+
+/* Sparkle eyebrows */
+main .eyebrow::before{
+  content:"\2726\2009";
+  color:hsl(var(--gold-deep));
+}
+#top .eyebrow::before{ content:none; }
+
+/* Scroll reveals get a literal pop */
+@keyframes reveal{
+  from{ opacity:0; transform:translateY(30px) scale(.965); }
+  60%{ opacity:1; transform:translateY(-4px) scale(1.008); }
+  to{ opacity:1; transform:translateY(0) scale(1); }
+}
+.reveal{ animation-duration:.9s; }
+
+/* Hero CTA: gentle attention pulse */
+@keyframes cta-glow{
+  0%,100%{ box-shadow:0 12px 28px -10px hsl(var(--accent) / .65), inset 0 1px 0 hsl(0 0% 100% / .28); }
+  50%{ box-shadow:0 16px 42px -8px hsl(var(--accent) / .9), inset 0 1px 0 hsl(0 0% 100% / .32); }
+}
+#top a[class*="bg-[hsl(var(--accent))]"]{
+  animation:cta-glow 3.2s ease-in-out infinite;
+}
+#top a[class*="bg-[hsl(var(--accent))]"]:hover{
+  animation:none;
+}
+
+/* Marquee: bolder voice */
+[aria-label="Our promise"]{
+  font-weight:600;
+  letter-spacing:.03em;
+}
+[aria-label="Our promise"] .marquee-track{
+  animation-duration:22s;
+}
+
+/* Service cards: stronger hover pop */
+.service-card:hover{
+  transform:translateY(-10px) scale(1.015);
+  box-shadow:0 30px 60px -22px hsl(163 30% 10% / .35);
+  border-color:hsl(var(--gold) / .8);
+}
+
+@media (prefers-reduced-motion:reduce){
+  .display-font em{ animation:none; }
+  #top a[class*="bg-[hsl(var(--accent))]"]{ animation:none; }
+  @keyframes reveal{
+    from{ opacity:0; }
+    to{ opacity:1; }
+  }
+}
